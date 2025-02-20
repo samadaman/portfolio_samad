@@ -3,19 +3,117 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-white: #FFFFFF;
+  --text-primary: #0A192F;
+  --text-secondary: #4A5568;
+  --accent-color: #3182CE;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background-white);
+  color: var(--text-primary);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply 
+    bg-white 
+    text-gray-900 
+    antialiased 
+    selection:bg-text-accent 
+    selection:text-background-dark;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  @apply 
+    w-3 
+    bg-background-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply 
+    bg-brand-600 
+    rounded-full 
+    hover:bg-brand-500 
+    transition-colors 
+    duration-300;
+}
+
+/* Smooth Transitions */
+* {
+  @apply 
+    transition-all 
+    duration-300 
+    ease-in-out;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply 
+    font-bold 
+    text-text-primary 
+    tracking-tight;
+}
+
+/* Link Styles */
+a {
+  @apply 
+    text-text-accent 
+    hover:text-brand-300 
+    transition-colors 
+    duration-300 
+    cursor-pointer;
+}
+
+/* Focus States */
+*:focus {
+  @apply 
+    outline-none 
+    ring-2 
+    ring-text-accent 
+    ring-opacity-50;
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply 
+    bg-clip-text 
+    text-transparent 
+    bg-gradient-to-r 
+    from-brand-400 
+    to-text-accent;
+}
+
+/* Glassmorphism Effect */
+.glassmorphism {
+  background: rgba(17, 34, 64, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* Responsive Typography */
+@screen sm {
+  body {
+    @apply text-base;
+  }
+}
+
+@screen md {
+  body {
+    @apply text-lg;
+  }
+}
+
+@screen lg {
+  body {
+    @apply text-xl;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
 }
